@@ -8,10 +8,10 @@ public class NetworkSetUp {
     public static void main(String[] args){
 
         //TODO group stations by their zone
-        Station londonBridge = new Station("London Bridge", true);
-        Station southwark = new Station("Southwark", false);
-        Station waterloo = new Station("Waterloo", false);
-        Station elephantAndCastle = new Station("Elephant & Castle", false);
+        Station londonBridge = new Station("London Bridge", true,0);
+        Station southwark = new Station("Southwark", false,1);
+        Station waterloo = new Station("Waterloo", false,2);
+        Station elephantAndCastle = new Station("Elephant & Castle", false,3);
 
         Line jubileeLine = new Line();
         jubileeLine.append(waterloo);

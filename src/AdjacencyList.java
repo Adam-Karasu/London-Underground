@@ -14,7 +14,11 @@ public class AdjacencyList {
      * ]
      */
 
-    private final LinkedList<Tuple<Station, Station>>[] adjacencyList;
+    /**
+     * creates cartesian product - WHY : 2D data structure AND
+     * Each index holds both station name and weight
+     */
+    private final LinkedList<Tuple<Station, Integer>>[] adjacencyList;
 
     /**
      * /*http://theoryofprogramming.com/2014/12/24/graph-theory-basics/
@@ -23,7 +27,7 @@ public class AdjacencyList {
      * @param vertices
      */
     public AdjacencyList(int vertices) {
-        adjacencyList = (LinkedList<Tuple<Station, Station>>[]) new LinkedList[vertices];
+        adjacencyList = (LinkedList<Tuple<Station, Integer>>[]) new LinkedList[vertices];
 
         for (int i = 0; i < adjacencyList.length; ++i) {
             adjacencyList[i] = new LinkedList<>();
@@ -36,11 +40,11 @@ public class AdjacencyList {
     public void printAdjacencyList() {
         int i = 0;
 
-        for (LinkedList< Tuple<Station, Station> > list : adjacencyList) {
+        for (LinkedList< Tuple<Station, Integer> > list : adjacencyList) {
             System.out.print("adjacencyList[" + i + "] -> ");
 
-            for (Tuple<Station, Station> edge : list) {
-                System.out.print(edge.getLeft() + "(" + edge.getRight() + ")");
+            for (Tuple<Station, Integer> edge : list) {
+                System.out.print(edge.getLeft().toString() + "(" + edge.getRight() + ") ");
             }
 
             ++i;
@@ -48,13 +52,25 @@ public class AdjacencyList {
         }
     }
 }
+
 class Run {
     public static void main (String[] args){
 
-        AdjacencyList test = new AdjacencyList(3);
-        test.addEdge(0, new Station("gg", false), new Station("ff", false));
-        test.addEdge(0, new Station("gg", false), new Station("ff", false));
-        test.addEdge(0, new Station("gg", false), new Station("", false));
+        //TODO give Station class static numbering variable - each new station saves its own number from that variable
+        Station londonBridge = new Station("London Bridge", true, 0);
+        Station southwark = new Station("Southwark", false, 1);
+        Station waterloo = new Station("Waterloo", false, 2);
+        Station elephantAndCastle = new Station("Elephant & Castle", false, 3);
+
+        AdjacencyList test = new AdjacencyList(4);
+        test.addEdge(1,londonBridge,southwark);
+        test.addEdge(1,londonBridge,elephantAndCastle);
+        test.addEdge(1,waterloo, southwark);
+        test.addEdge(1,southwark, waterloo);
+        test.addEdge(1,southwark,londonBridge);
+
+        test.addEdge(1,elephantAndCastle, londonBridge);
+
+        test.printAdjacencyList();
     }
 }
-

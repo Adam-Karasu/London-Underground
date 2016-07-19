@@ -10,9 +10,10 @@ public class Station {
     private int zone;
     private boolean hasConnection;
 
-    public Station(String name, boolean hasConnection) {
+    public Station(String name, boolean hasConnection, int stationNum) {
         this.name = name;
         this.hasConnection = hasConnection;
+        this.stationNum = stationNum;
     }
 
     public int getStationNum() {
