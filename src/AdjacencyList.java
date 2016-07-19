@@ -37,24 +37,27 @@ public class AdjacencyList {
     public void addEdge(int weight, Station startStation, Station endStation) {
         adjacencyList[startStation.getStationNum()].add(new Tuple(endStation, weight));
     }
-    public void printAdjacencyList() {
+
+    public String printAdjacencyList() {
+        String out = "";
         int i = 0;
 
-        for (LinkedList< Tuple<Station, Integer> > list : adjacencyList) {
-            System.out.print("adjacencyList[" + i + "] -> ");
+        for (LinkedList<Tuple<Station, Integer>> list : adjacencyList) {
+            out += "adjacencyList[" + i + "] -> ";
 
             for (Tuple<Station, Integer> edge : list) {
-                System.out.print(edge.getLeft().toString() + "(" + edge.getRight() + ") ");
+                out += edge.getLeft().toString() + "(" + edge.getRight() + ")";
             }
 
             ++i;
-            System.out.println();
+            out += "\n";
         }
+        return out;
     }
 }
 
 class Run {
-    public static void main (String[] args){
+    public static void main(String[] args) {
 
         //TODO give Station class static numbering variable - each new station saves its own number from that variable
         Station londonBridge = new Station("London Bridge", true, 0);
@@ -63,14 +66,22 @@ class Run {
         Station elephantAndCastle = new Station("Elephant & Castle", false, 3);
 
         AdjacencyList test = new AdjacencyList(4);
-        test.addEdge(1,londonBridge,southwark);
-        test.addEdge(1,londonBridge,elephantAndCastle);
-        test.addEdge(1,waterloo, southwark);
-        test.addEdge(1,southwark, waterloo);
-        test.addEdge(1,southwark,londonBridge);
+        test.addEdge(1, londonBridge, southwark);
+        test.addEdge(1, londonBridge, elephantAndCastle);
+        test.addEdge(1, waterloo, southwark);
+        test.addEdge(1, southwark, waterloo);
+        test.addEdge(1, southwark, londonBridge);
+        test.addEdge(1, elephantAndCastle, londonBridge);
 
-        test.addEdge(1,elephantAndCastle, londonBridge);
+        /**
+         * The above will create the below un-directional graph
+         *
+         * wl   s   lb
+         * 0---0---0
+         *        /
+         *       0 e&c
+         */
 
-        test.printAdjacencyList();
+        System.out.println(test.printAdjacencyList());
     }
 }
