@@ -2,13 +2,14 @@ import java.util.LinkedList;
 
 /**
  * Created by murad on 18/07/16.
+ * TODO adjacencyList can become HashMap. WHY : make each origin accessible by its name and number
  */
 public class AdjacencyList {
 
     /**
      * Array of linked lists container
      * [
-     * V0 [1][]->[2][x]
+     * V0 [1][ ]->[2][x]
      * V1 [0][x]
      * V2 [0][x]
      * ]
@@ -43,10 +44,10 @@ public class AdjacencyList {
         int i = 0;
 
         for (LinkedList<Tuple<Station, Integer>> list : adjacencyList) {
-            out += "adjacencyList[" + i + "] -> ";
+            out += "Vertex : adjacencyList[" + i + "] -> Edge : ";
 
             for (Tuple<Station, Integer> edge : list) {
-                out += edge.getLeft().toString() + "(" + edge.getRight() + ")";
+                out += edge.getLeft().getName() + " -> "/* + "(" + edge.getRight() + ") "*/;
             }
 
             ++i;

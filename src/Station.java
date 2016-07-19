@@ -16,6 +16,10 @@ public class Station {
         this.stationNum = stationNum;
     }
 
+    public String getName() {
+        return name;
+    }
+
     public int getStationNum() {
         return stationNum;
     }
